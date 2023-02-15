@@ -75,12 +75,15 @@ void runTests() {
   /* see https://wiki.jenkins.io/display/JENKINS/Parallel+Test+Executor+Plugin and demo on github
   /* Using arbitrary parallelism of 4 and "generateInclusions" feature added in v1.8. */
   def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 4], generateInclusions: true
+    echo splits;
 
   /* Create dictionary to hold set of parallel test executions. */
   def testGroups = [:]
 
   for (int i = 0; i < splits.size(); i++) {
     def split = splits[i]
+      echo split
+      echo split.list
 
     /* Loop over each record in splits to prepare the testGroups that we'll run in parallel. */
     /* Split records returned from splitTests contain { includes: boolean, list: List<String> }. */
