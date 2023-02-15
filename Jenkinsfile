@@ -25,11 +25,10 @@ pipeline {
       stage('Test'){
           steps {
               PrintStage()
-              parallelism: 2
-              splitTests {
+              //splitTests {
                 sh './gradlew test'
                 junit '**/build/test-results/test/*.xml'
-              }
+              //}
           }
       }
       
