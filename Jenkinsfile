@@ -23,25 +23,26 @@ pipeline {
               }
           }
       }
-      stage('Test'){
-          steps {
-              PrintStage()
-              splitTests {
-                parallelism.count = 5
-                sh './gradlew test'
-                junit '**/build/test-results/test/*.xml'
-              }
-          }
-      }
+//       stage('Test'){
+//           steps {
+//               PrintStage()
+//               splitTests {
+//                 parallelism.count = 5
+//                 sh './gradlew test'
+//                 junit '**/build/test-results/test/*.xml'
+//               }
+//           }
+//       }
       
-//     stage('Test') {
-//         steps {
-//             PrintStage()
-//             sh './gradlew test'
-//             junit '**/build/test-results/test/*.xml'
-//             //runTests()
-//         }
-//     }
+    stage('Test') {
+        steps {
+            PrintStage()
+            //sh './gradlew test'
+            //junit '**/build/test-results/test/*.xml'
+            //runTests()
+            customRunTest()
+        }
+    }
       
 //           stage('parallel test'){
 //         parallel{
@@ -71,6 +72,12 @@ pipeline {
 
 void PrintStage(String text=""){
     text=="" ? println ('* '*10 + env.STAGE_NAME.toUpperCase() + " *"*10) : println (text)
+}
+void customRunTest() {
+    def splits = splitTests parallelism: [count: 2], generateInclusions: true
+    for (int i = 0; i < splits.size(); i++) {
+        echo "splits[${i}]: includes=${split.includes} list=${split.list}"
+    }
 }
 void runTests() {
     checkout scm
