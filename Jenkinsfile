@@ -99,12 +99,10 @@ void runTests() {
         /* Tell Maven to read the appropriate file. */
         if (split.includes) {
           writeFile file: "build/parallel-test-includes-${i}.txt", text: split.list.join("\n")
-          //run += " -Dsurefire.includesFile=build/parallel-test-includes-${i}.txt"
-            run += " --tests.includesFile=build/parallel-test-includes-${i}.txt"
+          run += " -Dsurefire.includesFile=build/parallel-test-includes-${i}.txt"
         } else {
           writeFile file: "build/parallel-test-excludes-${i}.txt", text: split.list.join("\n")
-          //run += " -Dsurefire.excludesFile=build/parallel-test-excludes-${i}.txt"
-            run += " --tests.excludesFile=build/parallel-test-excludes-${i}.txt"
+          run += " -Dsurefire.excludesFile=build/parallel-test-excludes-${i}.txt"
         }
 
         /* Call the Maven build with tests. */
