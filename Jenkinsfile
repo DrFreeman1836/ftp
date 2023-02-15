@@ -22,24 +22,24 @@ pipeline {
               }
           }
       }
-      stage('Test'){
-          steps {
-              PrintStage()
-              //splitTests {
-                sh './gradlew test'
-                junit '**/build/test-results/test/*.xml'
-              //}
-          }
-      }
+//       stage('Test'){
+//           steps {
+//               PrintStage()
+//               splitTests {
+//                 sh './gradlew test'
+//                 junit '**/build/test-results/test/*.xml'
+//               }
+//           }
+//       }
       
-//     stage('Test') {
-//         steps {
-//             PrintStage()
-//             //sh './gradlew test'
-//             //junit '**/build/test-results/test/*.xml'
-//             runTests()
-//         }
-//     }
+    stage('Test') {
+        steps {
+            PrintStage()
+            sh './gradlew test'
+            junit '**/build/test-results/test/*.xml'
+            //runTests()
+        }
+    }
       
 //           stage('parallel test'){
 //         parallel{
