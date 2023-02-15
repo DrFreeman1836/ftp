@@ -33,10 +33,11 @@ pipeline {
       
     stage('Test') {
         steps {
-//             sh './gradlew test'
-//             junit '**/build/test-results/test/*.xml'
             PrintStage()
-            runTests()
+            //checkout scm
+             sh './gradlew test'
+             junit '**/build/test-results/test/*.xml'
+            //runTests()
         }
     }
       
