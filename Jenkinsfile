@@ -29,29 +29,12 @@ pipeline {
 //           }
 //
 //       }
-//     stage('Test') {
-//         steps {
-//             sh './gradlew test'
-//             junit '**/build/test-results/test/*.xml'
-//         }
-//     }
-      stage('parallel test'){
-      parallel{
-        stage('Test') {
-            steps {
-                sh './gradlew test'
-                junit '**/build/test-results/test/*.xml'
-            }
-        }
-       stage('Test') {
-         steps {
+    stage('Test') {
+        steps {
             sh './gradlew test'
             junit '**/build/test-results/test/*.xml'
-         }
-      }     
-    } 
+        }
     }
-      }
   }
   post {
     always {
