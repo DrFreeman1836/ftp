@@ -75,7 +75,7 @@ void PrintStage(String text=""){
 }
 void customRunTest() {
     echo '=========================================================='
-    def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', count: 2], generateInclusions: true
+    def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 2], generateInclusions: true
     for (int i = 0; i < splits.size(); i++) {
         def split = splits[i]
         echo "splits[${i}]: includes=${split.includes} list=${split.list}"
