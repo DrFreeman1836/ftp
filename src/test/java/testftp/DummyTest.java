@@ -1,4 +1,4 @@
-package testftp;
+package testftp.1;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
