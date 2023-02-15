@@ -97,18 +97,18 @@ void runTests() {
         /* Write includesFile or excludesFile for tests.  Split record provided by splitTests. */
         /* Tell Maven to read the appropriate file. */
         if (split.includes) {
-          writeFile file: "target/parallel-test-includes-${i}.txt", text: split.list.join("\n")
-          run += " -Dsurefire.includesFile=target/parallel-test-includes-${i}.txt"
+          writeFile file: "build/parallel-test-includes-${i}.txt", text: split.list.join("\n")
+          run += " -Dsurefire.includesFile=build/parallel-test-includes-${i}.txt"
         } else {
-          writeFile file: "target/parallel-test-excludes-${i}.txt", text: split.list.join("\n")
-          run += " -Dsurefire.excludesFile=target/parallel-test-excludes-${i}.txt"
+          writeFile file: "build/parallel-test-excludes-${i}.txt", text: split.list.join("\n")
+          run += " -Dsurefire.excludesFile=build/parallel-test-excludes-${i}.txt"
         }
 
         /* Call the Maven build with tests. */
         sh run
 
         /* Archive the test results */
-        junit '**/target/surefire-reports/TEST-*.xml'
+        junit '**/build/test-results/test/*.xml'
       }
     }
   }
