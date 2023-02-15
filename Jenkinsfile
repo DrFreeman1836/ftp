@@ -105,6 +105,7 @@ void runTests() {
         }
 
         /* Call the Maven build with tests. */
+          echo '================================================================'
           echo run
         sh run
 
