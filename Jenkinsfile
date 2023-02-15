@@ -77,7 +77,8 @@ void customRunTest() {
     echo '=========================================================='
     def splits = splitTests parallelism: [count: 2], generateInclusions: true
     for (int i = 0; i < splits.size(); i++) {
-        echo splits[i]
+        //echo splits[i]
+        echo '++++++++++++++++++++++++++++++++++++='
     }
 }
 void runTests() {
