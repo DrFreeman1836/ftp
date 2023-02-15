@@ -17,7 +17,7 @@ pipeline {
           steps {
               withGradle {
                 sh './gradlew clean ftpDist --no-daemon --refresh-dependencies'
-                sh './gradlew build'
+                //sh './gradlew build'
               }
           }
       }
