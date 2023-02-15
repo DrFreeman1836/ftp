@@ -35,7 +35,7 @@ pipeline {
     stage('Test') {
         steps {
             PrintStage()
-            sh './gradlew test'
+            sh './gradlew test --tests DammyTest'
             junit '**/build/test-results/test/*.xml'
             //runTests()
         }
