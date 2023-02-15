@@ -16,7 +16,7 @@ dependencies {
     testCompile 'org.junit.jupiter:junit-jupiter:5.7.0'
     testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testRuntime 'org.junit.jupiter:junit-jupiter-params:5.7.0'
-    //testRuntime 'org.jenkins-ci.plugins:parallel-test-executor:318.va_e768e2e32e3'
+    testRuntime 'org.jenkins-ci.plugins:parallel-test-executor:318.va_e768e2e32e3'
 
     compile 'commons-net:commons-net:3.4'
     compile 'ch.qos.logback:logback-classic:1.2.11'
