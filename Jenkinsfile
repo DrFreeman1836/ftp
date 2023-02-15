@@ -10,7 +10,8 @@ pipeline {
       stage("Checkout") {
           steps {
             PrintStage()
-            checkout changelog: false, poll: false, scm: [$class: 'SubversionSCM', filterChangelog: false, ignoreDirPropChanges: false, locations: [[cancelProcessOnExternalsFail: false, depthOption: 'infinity', ignoreExternalsOption: true, local: '.']], quietOperation: false, workspaceUpdater: [$class: 'UpdateWithRevertUpdater']]
+            checkout scm
+            //checkout changelog: false, poll: false, scm: [$class: 'SubversionSCM', filterChangelog: false, ignoreDirPropChanges: false, locations: [[cancelProcessOnExternalsFail: false, depthOption: 'infinity', ignoreExternalsOption: true, local: '.']], quietOperation: false, workspaceUpdater: [$class: 'UpdateWithRevertUpdater']]
           }
       }
       stage("Build") {
@@ -89,7 +90,7 @@ void runTests() {
     /* all known tests to run any tests not seen during the previous run.  */
     testGroups["split-${i}"] = {  // example, "split3"
       node {
-        checkout scm
+        //checkout scm
         def run = './gradlew test'
 
         /* Write includesFile or excludesFile for tests.  Split record provided by splitTests. */
