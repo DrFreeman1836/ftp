@@ -27,7 +27,7 @@ pipeline {
           steps {
               PrintStage()
               splitTests {
-                parallelism: [count = '2']
+                parallelism.count = 5
                 sh './gradlew test'
                 junit '**/build/test-results/test/*.xml'
               }
