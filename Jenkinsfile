@@ -79,7 +79,6 @@ void runTests() {
   /* Create dictionary to hold set of parallel test executions. */
   def testGroups = [:]
 
-    def run = './gradlew test'
   for (int i = 0; i < splits.size(); i++) {
     def split = splits[i]
 
@@ -93,7 +92,7 @@ void runTests() {
     testGroups["split-${i}"] = {  // example, "split3"
       node {
         //checkout scm
-        //def run = './gradlew test'
+        def run = './gradlew test'
 
         /* Write includesFile or excludesFile for tests.  Split record provided by splitTests. */
         /* Tell Maven to read the appropriate file. */
@@ -111,10 +110,10 @@ void runTests() {
         //
 
         /* Archive the test results */
+        sh run
         junit '**/build/test-results/test/*.xml'
       }
     }
   }
-    sh run
   parallel testGroups
 }
