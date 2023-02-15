@@ -8,8 +8,7 @@ public class DummyTest {
   @Test
   public void dummyTest1() throws InterruptedException {
     Thread.sleep(5000);
-    System.out.println("test");
-    Assertions.assertTrue(true);
+    Assertions.assertTrue(false);
   }
 
   @Test
