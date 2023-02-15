@@ -81,7 +81,6 @@ void runTests() {
 
   for (int i = 0; i < splits.size(); i++) {
     def split = splits[i]
-      echo split
       echo split.list
 
     /* Loop over each record in splits to prepare the testGroups that we'll run in parallel. */
