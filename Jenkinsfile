@@ -92,7 +92,7 @@ void runTests() {
 
 
 
-        def mavenInstall = './gradlew test'
+        def run = './gradlew test'
 
         /* Write includesFile or excludesFile for tests.  Split record provided by splitTests. */
         /* Tell Maven to read the appropriate file. */
@@ -105,7 +105,7 @@ void runTests() {
         }
 
         /* Call the Maven build with tests. */
-        sh 'mavenInstall'
+        sh run
 
         /* Archive the test results */
         junit '**/target/surefire-reports/TEST-*.xml'
