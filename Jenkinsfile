@@ -17,6 +17,7 @@ pipeline {
           steps {
               withGradle {
                 sh './gradlew clean ftpDist --no-daemon --refresh-dependencies'
+                sh './gradlew build'
               }
           }
       }
@@ -88,9 +89,6 @@ void runTests() {
     /* all known tests to run any tests not seen during the previous run.  */
     testGroups["split-${i}"] = {  // example, "split3"
       node {
-        checkout scm
-
-
 
         def run = './gradlew test'
 
