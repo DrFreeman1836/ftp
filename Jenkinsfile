@@ -33,7 +33,9 @@ pipeline {
         steps {
 //             sh './gradlew test'
 //             junit '**/build/test-results/test/*.xml'
+            PrintStage()
             runTest()
+            testtest()
         }
     }
       
@@ -61,6 +63,9 @@ pipeline {
                                          [$class: 'RequesterRecipientProvider']]))
     }
   }
+}
+
+void testtest(){
 }
 
 void PrintStage(String text=""){
