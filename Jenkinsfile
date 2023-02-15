@@ -20,22 +20,21 @@ pipeline {
               }
           }
       }
-//       stage('Test'){
-//           steps {
-//               splitTests {
-//                 sh './gradlew test'
-//                 junit '**/build/test-results/test/*.xml'
-//               }
-//           }
-
-//       }
+      stage('Test'){
+          steps {
+              splitTests {
+                sh './gradlew test'
+                junit '**/build/test-results/test/*.xml'
+              }
+          }
+      }
       
-    stage('Test') {
-        steps {
-            sh './gradlew test'
-            junit '**/build/test-results/test/*.xml'
-        }
-    }
+//     stage('Test') {
+//         steps {
+//             sh './gradlew test'
+//             junit '**/build/test-results/test/*.xml'
+//         }
+//     }
       
 //           stage('parallel test'){
 //         parallel{
