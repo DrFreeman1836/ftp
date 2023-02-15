@@ -66,7 +66,6 @@ public class FTPUploader {
   }
 
   public static void main(String[] args) throws IOException {
-    JOPA
     final FTPUploader loader = new FTPUploader();
     final CmdLineParser parser = new CmdLineParser(loader);
     try {
