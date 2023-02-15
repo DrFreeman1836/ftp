@@ -1,11 +1,12 @@
 pipeline {
-  agent {
-      node {
-          label 'master'
-          //customWorkspace "${WORKSPACE_DIR}"
-      }
-  }
+    agent any
+
   stages {
+       stage('Hello') {
+          steps {
+            echo 'Hello World'
+         }
+       }
       stage("Checkout") {
           steps {
             PrintStage()
