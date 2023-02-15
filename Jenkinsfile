@@ -31,10 +31,10 @@ pipeline {
 //       }
     stage('Test') {
         steps {
-          splitTests {
+          //splitTests {
             sh './gradlew test'
             junit '**/build/test-results/test/*.xml'
-          }
+          //}
           //gradlew(tasks: ["test"])
         }
     }
