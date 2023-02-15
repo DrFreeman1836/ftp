@@ -67,7 +67,7 @@ pipeline {
 void PrintStage(String text=""){
     text=="" ? println ('* '*10 + env.STAGE_NAME.toUpperCase() + " *"*10) : println (text)
 }
-void runTests(def args) {
+void runTests() {
   /* Request the test groupings.  Based on previous test results. */
   /* see https://wiki.jenkins.io/display/JENKINS/Parallel+Test+Executor+Plugin and demo on github
   /* Using arbitrary parallelism of 4 and "generateInclusions" feature added in v1.8. */
