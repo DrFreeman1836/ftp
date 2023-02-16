@@ -76,13 +76,11 @@ void PrintStage(String text=""){
 }
 
 void needRunParallelTest() {
-stash excludes: 'target/, build/', includes: '**', name: 'source'
 def splits = splitTests([$class: 'CountDrivenParallelism', size: 2])
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def exclusions = splits.get(i);
   branches["split${i}"] = {
-      unstash 'source'
       writeFile file: 'exclusions.txt', text: exclusions.join("\n")
       sh "./gradlew -I ./exclusions.gradle clean check"
       step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])
