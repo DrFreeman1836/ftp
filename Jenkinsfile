@@ -40,8 +40,8 @@ pipeline {
             //sh './gradlew test'
             //junit '**/build/test-results/test/*.xml'
             //runTests()
-            //customRunTest()
-            needRunParallelTest()
+            customRunTest()
+            //needRunParallelTest()
             //test2()
         }
     }
@@ -82,10 +82,10 @@ def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def exclusions = splits.get(i);
   branches["split${i}"] = {
-      writeFile file: 'exclusions.txt', text: exclusions.join("\n")
+      writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       //sh "./gradlew -I ./exclusions.gradle clean check"
       sh "./gradlew -Dsurefire.excludesFile=exclusions.txt"
-      step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])//-Dsurefire.excludesFile=
+      step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])//-Dsurefire.excludesFile= //./gradlew test --tests "com.xyz.b.module.TestClass.testToRun"
   }
 }
 parallel branches
