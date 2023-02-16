@@ -40,7 +40,8 @@ pipeline {
             //sh './gradlew test'
             //junit '**/build/test-results/test/*.xml'
             //runTests()
-            customRunTest()
+            //customRunTest()
+            needRunParallelTest()
         }
     }
       
@@ -73,6 +74,24 @@ pipeline {
 void PrintStage(String text=""){
     text=="" ? println ('* '*10 + env.STAGE_NAME.toUpperCase() + " *"*10) : println (text)
 }
+
+void needRunParallelTest() {
+def splits = splitTests([$class: 'CountDrivenParallelism', size: 2])
+def branches = [:]
+for (int i = 0; i < splits.size(); i++) {
+  def exclusions = splits.get(i);
+  branches["split${i}"] = {
+    node('remote') {
+      unstash 'source'
+      writeFile file: 'exclusions.txt', text: exclusions.join("\n")
+      sh "./gradlew -I ./exclusions.gradle clean check"
+      step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])
+    }
+  }
+}
+parallel branches
+}
+
 void customRunTest() {
     //def splits = splitTests parallelism: count(4), generateInclusions: true
     def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 2], generateInclusions: true
@@ -84,6 +103,7 @@ void customRunTest() {
     sh './gradlew test'
     junit '**/build/test-results/test/*.xml'
 }
+
 void runTests() {
   /* Request the test groupings.  Based on previous test results. */
   /* see https://wiki.jenkins.io/display/JENKINS/Parallel+Test+Executor+Plugin and demo on github
