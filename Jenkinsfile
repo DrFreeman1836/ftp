@@ -81,13 +81,15 @@ def splits = splitTests parallelism: count(2), generateInclusions: true
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
-   println("------------------------------------")
   branches["split${i}"] = {
       //writeFile file: 'exclusions.txt', text: split.join("\n")//split.list.join
       
 //       if(split.includes){
-        println('true ' + split.list)
-        println('false ' + split.list)
+      echo split.includes
+      echo split.list
+      echo '-----------------------'
+//         println('true ' + split.list)
+//         println('false ' + split.list)
 //       } else {
 //         println('false ' + split.list)
 //       }
