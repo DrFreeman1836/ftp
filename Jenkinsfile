@@ -41,7 +41,8 @@ pipeline {
             //junit '**/build/test-results/test/*.xml'
             //runTests()
             //customRunTest()
-            needRunParallelTest()
+            //needRunParallelTest()
+            test2()
         }
     }
       
@@ -147,4 +148,23 @@ void runTests() {
     }
   }
   parallel testGroups
+}
+
+void test2() {
+def stepsForParallelTest = [:]
+if (canFindPreviousTestResult()) {
+    def splits = splitTests parallelism: count(2), generateInclusions: true
+    for (int i = 0; i < splits.size(); i++) {
+        def split = splits[i]
+        stepsForParallelTest["java-${i}"] = parallelDynamicTestStep(i, split)
+    }
+}
+// } else {
+//     def testProfiles = ["test-1", "test-2", "test-3"]
+//     for (def i = 0; i < testProfiles.size(); i++) {
+//         def profile = testProfiles[i]
+//         stepsForParallelTest[profile] = parallelFixedTestStep(profile)
+//     }
+// }
+parallel stepsForParallelTest
 }
