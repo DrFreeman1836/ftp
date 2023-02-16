@@ -84,7 +84,7 @@ for (int i = 0; i < splits.size(); i++) {
   branches["split${i}"] = {
       writeFile file: 'exclusions.txt', text: exclusions.join("\n")
       //sh "./gradlew -I ./exclusions.gradle clean check"
-      sh "./gradlew -DDsurefire.excludesFile=exclusions.txt"
+      sh "./gradlew -Dsurefire.excludesFile=exclusions.txt"
       step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])//-Dsurefire.excludesFile=
   }
 }
