@@ -87,8 +87,9 @@ for (int i = 0; i < splits.size(); i++) {
       
       if(split.includes){
         println('true ' + split.list)
-      } else {
         println('false ' + split.list)
+//       } else {
+//         println('false ' + split.list)
       }
       
       //sh "./gradlew -I ./exclusions.gradle clean check"
