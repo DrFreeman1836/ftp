@@ -96,7 +96,7 @@ for (int i = 0; i < splits.size(); i++) {
       //step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])//./gradlew test --tests "com.xyz.b.module.TestClass.testToRun"
   }
 }
-parallel branches
+//parallel branches
 }
 
 void customRunTest() {
