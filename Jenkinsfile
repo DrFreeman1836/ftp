@@ -85,7 +85,7 @@ for (int i = 0; i < splits.size(); i++) {
       writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       //sh "./gradlew -I ./exclusions.gradle clean check"
       sh "./gradlew -Dsurefire.excludesFile=exclusions.txt"
-      step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])//-Dsurefire.excludesFile= //./gradlew test --tests "com.xyz.b.module.TestClass.testToRun"
+      step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])//./gradlew test --tests "com.xyz.b.module.TestClass.testToRun"
   }
 }
 parallel branches
@@ -93,7 +93,7 @@ parallel branches
 
 void customRunTest() {
     //def splits = splitTests parallelism: count(4), generateInclusions: true
-    def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 2], generateInclusions: false
+    def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 2], generateInclusions: true
     for (int i = 0; i < splits.size(); i++) {
         def split = splits[i]
         echo 'iteration i'
