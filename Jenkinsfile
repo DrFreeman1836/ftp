@@ -74,7 +74,7 @@ void PrintStage(String text=""){
     text=="" ? println ('* '*10 + env.STAGE_NAME.toUpperCase() + " *"*10) : println (text)
 }
 void customRunTest() {
-    def splits = splitTests parallelism: count(2), generateInclusions: true
+    def splits = splitTests parallelism: count(4), generateInclusions: true
     for (int i = 0; i < splits.size(); i++) {
         def split = splits[i]
         echo 'iteration i'
