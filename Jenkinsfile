@@ -71,14 +71,18 @@ for (int i = 0; i < splits.size(); i++) {
   branches["split${i}"] = {
       //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       
-//       if(split.includes){
       println (split.includes)
       println (split.list)
+      
+      for (int k = 0; k < split.list.size(); i++) {
+        println(split.list.get(k))
+      }
       println( '-----------------------')
-//         println('true ' + split.list)
-//         println('false ' + split.list)
+      
+//       if(split.includes){
+//         //
 //       } else {
-//         println('false ' + split.list)
+//         //
 //       }
       
       //sh "./gradlew -I ./exclusions.gradle clean check"
