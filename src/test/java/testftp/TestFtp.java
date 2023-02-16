@@ -18,7 +18,7 @@ public class TestFtp {
 
   @Test
   public void testConnect() throws InterruptedException {
-    Thread.sleep(5000);
+    Thread.sleep(2500);
     FTPClient ftpClient = Assertions.assertDoesNotThrow(() ->
         FtpUtils.connect("ftp://10.81.2.142/report/head", "update_ppo", "123")) ;
     Assertions.assertDoesNotThrow(ftpClient::disconnect); ;
@@ -26,7 +26,7 @@ public class TestFtp {
 
   @Test
   public void testFileUpload() throws IOException, InterruptedException {
-    Thread.sleep(5000);
+    Thread.sleep(2500);
     File tmpFile = new File("test_data.txt");
     tmpFile.createNewFile();
     tmpFile.deleteOnExit();
