@@ -80,9 +80,10 @@ void customRunTest() {
         def split = splits[i]
         echo "splits[${i}]: includes=${split.includes} list=${split.list}"
     }
+    sh './gradlew test'
+    junit '**/build/test-results/test/*.xml'
 }
 void runTests() {
-    checkout scm
   /* Request the test groupings.  Based on previous test results. */
   /* see https://wiki.jenkins.io/display/JENKINS/Parallel+Test+Executor+Plugin and demo on github
   /* Using arbitrary parallelism of 4 and "generateInclusions" feature added in v1.8. */
