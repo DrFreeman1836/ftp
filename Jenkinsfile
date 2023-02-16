@@ -74,11 +74,10 @@ void PrintStage(String text=""){
     text=="" ? println ('* '*10 + env.STAGE_NAME.toUpperCase() + " *"*10) : println (text)
 }
 void customRunTest() {
-    echo '=========================================================='
     def splits = splitTests parallelism: count(2), generateInclusions: true
     for (int i = 0; i < splits.size(); i++) {
         def split = splits[i]
-        echo splits.size()
+        echo 'iteration i'
         echo "splits[${i}]: includes=${split.includes} list=${split.list}"
     }
     sh './gradlew test'
