@@ -76,6 +76,7 @@ void PrintStage(String text=""){
 }
 
 void needRunParallelTest() {
+stash excludes: 'target/, build/', includes: '**', name: 'source'
 def splits = splitTests([$class: 'CountDrivenParallelism', size: 2])
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
