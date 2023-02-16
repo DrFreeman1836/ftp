@@ -71,8 +71,8 @@ for (int i = 0; i < splits.size(); i++) {
   branches["split${i}"] = {
       //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       
-      println (split.includes)
-      println (split.list)
+      println (split)
+      println (split)
       
 //       for (int k = 0; k < split.list.size(); i++) {
 //         println(split.list.get(k))
