@@ -85,9 +85,9 @@ for (int i = 0; i < splits.size(); i++) {
       //writeFile file: 'exclusions.txt', text: split.join("\n")//split.list.join
       
 //       if(split.includes){
-      echo split.includes
-      echo split.list
-      echo '-----------------------'
+      println (split.includes)
+      println (split.list)
+      println( '-----------------------')
 //         println('true ' + split.list)
 //         println('false ' + split.list)
 //       } else {
