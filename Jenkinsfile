@@ -68,13 +68,8 @@ for (int i = 0; i < splits.size(); i++) {
   branches["split${i}"] = {
       //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       
-      println (split)
-      
-//       for (int k = 0; k < split.size(); i++) {
-//         println(split.get(k))
-//         println('+')
-//       }
-      println( '-----------------------')
+      println(split)
+      println('-----------------------')
       
 //       if(split.includes){
 //         //
@@ -89,6 +84,7 @@ for (int i = 0; i < splits.size(); i++) {
 }
 parallel branches
 }
+
 //         if (split.includes) {
 //           writeFile file: "build/parallel-test-includes-${i}.txt", text: split.list.join("\n")
 //           run += " -Dsurefire.includesFile=build/parallel-test-includes-${i}.txt"
