@@ -97,7 +97,8 @@ void customRunTest() {
     for (int i = 0; i < splits.size(); i++) {
         def split = splits[i]
         echo 'iteration i'
-        echo "splits[${i}]: includes=${split.includes} list=${split.list}"
+        //echo "splits[${i}]: includes=${split.includes} list=${split.list}"
+        println(splits[i])
     }
     sh './gradlew test'
     junit '**/build/test-results/test/*.xml'
