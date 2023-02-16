@@ -37,11 +37,11 @@ pipeline {
     stage('Test') {
         steps {
             PrintStage()
-            //sh './gradlew test'
-            //junit '**/build/test-results/test/*.xml'
+            needRunParallelTest()
+            sh './gradlew test'
+            junit '**/build/test-results/test/*.xml'
             //runTests()
             //customRunTest()
-            needRunParallelTest()
             //test2()
         }
     }
