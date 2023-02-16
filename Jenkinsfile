@@ -74,7 +74,7 @@ for (int i = 0; i < splits.size(); i++) {
       println (split)
       
       for (int k = 0; k < split.size(); i++) {
-        println(split.get(k);)
+        println(split.get(k))
           println('+')
       }
       println( '-----------------------')
