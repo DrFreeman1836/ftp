@@ -81,12 +81,10 @@ def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def exclusions = splits.get(i);
   branches["split${i}"] = {
-    node('remote') {
-      unstash 'source'
+      //unstash 'source'
       writeFile file: 'exclusions.txt', text: exclusions.join("\n")
       sh "./gradlew -I ./exclusions.gradle clean check"
       step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])
-    }
   }
 }
 parallel branches
