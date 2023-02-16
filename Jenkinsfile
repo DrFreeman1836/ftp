@@ -82,6 +82,7 @@ void customRunTest() {
     }
     sh './gradlew test'
     junit '**/build/test-results/test/*.xml'
+    parallel testGroups
 }
 void runTests() {
   /* Request the test groupings.  Based on previous test results. */
