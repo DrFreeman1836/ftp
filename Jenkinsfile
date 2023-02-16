@@ -92,7 +92,7 @@ parallel branches
 }
 
 void customRunTest() {
-    def splits = splitTests parallelism: count(2), generateInclusions: true
+    def splits = splitTests parallelism: count(4), generateInclusions: true
     //def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 2], generateInclusions: true
     for (int i = 0; i < splits.size(); i++) {
         def split = splits[i]
