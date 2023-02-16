@@ -41,8 +41,8 @@ pipeline {
             //junit '**/build/test-results/test/*.xml'
             //runTests()
             //customRunTest()
-            //needRunParallelTest()
-            test2()
+            needRunParallelTest()
+            //test2()
         }
     }
       
@@ -158,7 +158,6 @@ def stepsForParallelTest = [:]
         def split = splits[i]
         stepsForParallelTest["java-${i}"] = parallelDynamicTestStep(i, split)
     }
-// }
 // } else {
 //     def testProfiles = ["test-1", "test-2", "test-3"]
 //     for (def i = 0; i < testProfiles.size(); i++) {
