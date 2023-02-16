@@ -1,4 +1,3 @@
-//@Library('testInParallel') _
 pipeline {
     agent any
 
@@ -19,21 +18,9 @@ pipeline {
           steps {
               withGradle {
                 sh './gradlew clean ftpDist --no-daemon --refresh-dependencies'
-                //sh './gradlew build'
               }
           }
       }
-//       stage('Test'){
-//           steps {
-//               PrintStage()
-//               splitTests {
-//                 parallelism.count = 5
-//                 sh './gradlew test'
-//                 junit '**/build/test-results/test/*.xml'
-//               }
-//           }
-//       }
-      
     stage('Test') {
         steps {
             PrintStage()
@@ -46,7 +33,7 @@ pipeline {
         }
     }
       
-//           stage('parallel test'){
+//     stage('parallel test'){
 //         parallel{
 //             stage('test 1'){
 //                 steps {
@@ -82,7 +69,7 @@ def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
   branches["split${i}"] = {
-      //writeFile file: 'exclusions.txt', text: split.join("\n")//split.list.join
+      //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       
 //       if(split.includes){
       println (split.includes)
@@ -101,82 +88,10 @@ for (int i = 0; i < splits.size(); i++) {
 }
 parallel branches
 }
-
-void customRunTest() {
-    def splits = splitTests parallelism: count(4), generateInclusions: true
-    //def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 2], generateInclusions: true
-    for (int i = 0; i < splits.size(); i++) {
-        def split = splits[i]
-        echo 'iteration i'
-        //echo "splits[${i}]: includes=${split.includes} list=${split.list}"
-        println(splits[i])
-    }
-    sh './gradlew test'
-    junit '**/build/test-results/test/*.xml'
-}
-
-void runTests() {
-  /* Request the test groupings.  Based on previous test results. */
-  /* see https://wiki.jenkins.io/display/JENKINS/Parallel+Test+Executor+Plugin and demo on github
-  /* Using arbitrary parallelism of 4 and "generateInclusions" feature added in v1.8. */
-  def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 2], generateInclusions: true
-
-  /* Create dictionary to hold set of parallel test executions. */
-  def testGroups = [:]
-
-  for (int i = 0; i < splits.size(); i++) {
-    def split = splits[i]
-
-    /* Loop over each record in splits to prepare the testGroups that we'll run in parallel. */
-    /* Split records returned from splitTests contain { includes: boolean, list: List<String> }. */
-    /*     includes = whether list specifies tests to include (true) or tests to exclude (false). */
-    /*     list = list of tests for inclusion or exclusion. */
-    /* The list of inclusions is constructed based on results gathered from */
-    /* the previous successfully completed job. One additional record will exclude */
-    /* all known tests to run any tests not seen during the previous run.  */
-    testGroups["split-${i}"] = {  // example, "split3"
-      node {
-        //checkout scm
-        def run = './gradlew test'
-
-        /* Write includesFile or excludesFile for tests.  Split record provided by splitTests. */
-        /* Tell Maven to read the appropriate file. */
-        if (split.includes) {
-          writeFile file: "build/parallel-test-includes-${i}.txt", text: split.list.join("\n")
-          run += " -Dsurefire.includesFile=build/parallel-test-includes-${i}.txt"
-        } else {
-          writeFile file: "build/parallel-test-excludes-${i}.txt", text: split.list.join("\n")
-          run += " -Dsurefire.excludesFile=build/parallel-test-excludes-${i}.txt"
-        }
-
-        /* Call the Maven build with tests. */
-          echo '================================================================'
-          echo run
-        //
-
-        /* Archive the test results */
-        sh run
-        junit '**/build/test-results/test/*.xml'
-      }
-    }
-  }
-  parallel testGroups
-}
-
-void test2() {
-def stepsForParallelTest = [:]
-// if (canFindPreviousTestResult()) {
-    def splits = splitTests parallelism: count(2), generateInclusions: true
-    for (int i = 0; i < splits.size(); i++) {
-        def split = splits[i]
-        stepsForParallelTest["java-${i}"] = parallelDynamicTestStep(i, split)
-    }
-// } else {
-//     def testProfiles = ["test-1", "test-2", "test-3"]
-//     for (def i = 0; i < testProfiles.size(); i++) {
-//         def profile = testProfiles[i]
-//         stepsForParallelTest[profile] = parallelFixedTestStep(profile)
-//     }
-// }
-parallel stepsForParallelTest
-}
+//         if (split.includes) {
+//           writeFile file: "build/parallel-test-includes-${i}.txt", text: split.list.join("\n")
+//           run += " -Dsurefire.includesFile=build/parallel-test-includes-${i}.txt"
+//         } else {
+//           writeFile file: "build/parallel-test-excludes-${i}.txt", text: split.list.join("\n")
+//           run += " -Dsurefire.excludesFile=build/parallel-test-excludes-${i}.txt"
+//         }
