@@ -74,9 +74,9 @@ for (int i = 0; i < splits.size(); i++) {
       println (split.includes)
       println (split.list)
       
-      for (int k = 0; k < split.list.size(); i++) {
-        println(split.list.get(k))
-      }
+//       for (int k = 0; k < split.list.size(); i++) {
+//         println(split.list.get(k))
+//       }
       println( '-----------------------')
       
 //       if(split.includes){
