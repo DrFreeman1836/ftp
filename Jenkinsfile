@@ -92,13 +92,18 @@ parallel branches
 }
 
 void customRunTest() {
-    def splits = splitTests parallelism: count(4), generateInclusions: false
+    def splits = splitTests parallelism: count(4), generateInclusions: true
     //def splits = splitTests parallelism: [$class: 'CountDrivenParallelism', size: 2], generateInclusions: true
     for (int i = 0; i < splits.size(); i++) {
         def split = splits[i]
         echo 'iteration i'
         //echo "splits[${i}]: includes=${split.includes} list=${split.list}"
         println(splits[i])
+        if (!split.includes) {
+            writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
+            println(./gradlew cleantest --tests split.list.join)
+            sh "./gradlew cleantest --tests split.list.join"
+        }
     }
     sh './gradlew test'
     junit '**/build/test-results/test/*.xml'
