@@ -27,9 +27,6 @@ pipeline {
             needRunParallelTest()
             sh './gradlew test'
             junit '**/build/test-results/test/*.xml'
-            //runTests()
-            //customRunTest()
-            //test2()
         }
     }
       
@@ -73,10 +70,10 @@ for (int i = 0; i < splits.size(); i++) {
       
       println (split)
       
-      for (int k = 0; k < split.size(); i++) {
-        println(split.get(k))
-          println('+')
-      }
+//       for (int k = 0; k < split.size(); i++) {
+//         println(split.get(k))
+//         println('+')
+//       }
       println( '-----------------------')
       
 //       if(split.includes){
