@@ -101,7 +101,6 @@ void customRunTest() {
         println(splits[i])
         if (!split.includes) {
             writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
-            println(./gradlew cleantest --tests split.list.join)
             sh "./gradlew cleantest --tests split.list.join"
         }
     }
