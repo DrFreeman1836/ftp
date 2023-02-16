@@ -36,7 +36,7 @@ test {
         showCauses true
         showStackTraces false
     }
-    maxParallelForks = 4
+    maxParallelForks = 3
 }
 
 task ftpJar(type: Jar) {
