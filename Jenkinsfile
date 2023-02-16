@@ -77,13 +77,20 @@ void PrintStage(String text=""){
 }
 
 void needRunParallelTest() {
-def splits = splitTests([$class: 'CountDrivenParallelism', size: 2])
+def splits = splitTests parallelism: count(2), generateInclusions: true]
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
-  def exclusions = splits.get(i);
-    println(exclusions)
+  def split = splits.get(i);
+  println(split)
   branches["split${i}"] = {
-      writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
+      //writeFile file: 'exclusions.txt', text: split.join("\n")//split.list.join
+      
+      if(split.includes){
+        println('true ' + split.list)
+      } else {
+        println('false ' + split.list)
+      }
+      
       //sh "./gradlew -I ./exclusions.gradle clean check"
       //sh "./gradlew -Dsurefire.excludesFile=exclusions.txt"
       //step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])//./gradlew test --tests "com.xyz.b.module.TestClass.testToRun"
