@@ -60,8 +60,8 @@ void PrintStage(String text=""){
     text=="" ? println ('* '*10 + env.STAGE_NAME.toUpperCase() + " *"*10) : println (text)
 }
 
-String getTestName(String class) {
-    return class.subString(class.indexOf('/'), class.indexOf('.'))
+String getTestName(String className) {
+    return className.subString(className.indexOf('/'), className.indexOf('.'))
 }
 
 void needRunParallelTest() {
