@@ -61,7 +61,7 @@ String getTestName(String className) {
 }
 
 void needRunParallelTest() {
-def splits = splitTests parallelism: count(2), generateInclusions: false, estimateTestsFromFiles: false
+def splits = splitTests parallelism: count(2), generateInclusions: false//, estimateTestsFromFiles: false
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
@@ -74,7 +74,7 @@ for (int i = 0; i < splits.size(); i++) {
   println(run)
   branches["split${i}"] = {
        sh run
-       //junit '**/build/test-results/test/*.xml'
+       junit '**/build/test-results/test/*.xml'
        //step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])
   }
 }
