@@ -75,6 +75,7 @@ for (int i = 0; i < splits.size(); i++) {
   branches["split${i}"] = {
        sh run
        junit '**/build/test-results/test/*.xml'
+       //step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])
   }
 }
 parallel branches
