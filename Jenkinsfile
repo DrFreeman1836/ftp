@@ -22,7 +22,7 @@ pipeline {
             PrintStage()
             needRunParallelTest()
 //             sh './gradlew test'
-             junit '**/build/test-results/test/*.xml'
+//              junit '**/build/test-results/test/*.xml'
         }
     }
       
@@ -74,7 +74,7 @@ for (int i = 0; i < splits.size(); i++) {
   println(run)
   branches["split${i}"] = {
        sh run
-       //junit '**/build/test-results/test/*.xml'
+       junit '**/build/test-results/test/*.xml'
   }
 }
 parallel branches
