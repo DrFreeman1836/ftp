@@ -61,7 +61,7 @@ void PrintStage(String text=""){
 }
 
 void needRunParallelTest() {
-def splits = splitTests parallelism: count(4), generateInclusions: false
+def splits = splitTests parallelism: count(2), generateInclusions: false
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
