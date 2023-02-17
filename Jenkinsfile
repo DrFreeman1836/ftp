@@ -66,9 +66,9 @@ def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
   def run = './gradlew test'
-  for(int k = 0; k < split.list.size(); k++) {
+  for(int k = 0; k < split.size(); k++) {
     run += ' --tests '
-    run += split.list.get(k)
+    run += split.get(k)
   }
   println(run)
   branches["split${i}"] = {
