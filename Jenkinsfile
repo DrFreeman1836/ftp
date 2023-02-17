@@ -21,29 +21,29 @@ pipeline {
               }
           }
       }
-//     stage('Test') {
-//         steps {
-//             PrintStage()
-//             needRunParallelTest()
-//             sh './gradlew test'
-//             junit '**/build/test-results/test/*.xml'
-//         }
-//     }
-      
-    stage('parallel test'){
-        parallel{
-            stage('test 1'){
-                steps {
-                    sh './gradlew test'
-                }
-            }
-            stage('test 2'){
-                steps{
-                    sh './gradlew test2'
-                }
-            }
+    stage('Test') {
+        steps {
+            PrintStage()
+            needRunParallelTest()
+            sh './gradlew test'
+            junit '**/build/test-results/test/*.xml'
         }
     }
+      
+//     stage('parallel test'){
+//         parallel{
+//             stage('test 1'){
+//                 steps {
+//                     sh './gradlew test'
+//                 }
+//             }
+//             stage('test 2'){
+//                 steps{
+//                     sh './gradlew test2'
+//                 }
+//             }
+//         }
+//     }
       
   }
   post {
@@ -65,13 +65,12 @@ def splits = splitTests parallelism: count(4), generateInclusions: false//, esti
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
-  println(split)  
-//   def run = './gradlew test'
-//   for(int k = 0; k < split.list.size(); k++) {
-//     run += ' --tests '
-//     run += split.list.get(k)
-//   }
-//   println(run)
+  def run = './gradlew test'
+  for(int k = 0; k < split.list.size(); k++) {
+    run += ' --tests '
+    run += split.list.get(k)
+  }
+  println(run)
   branches["split${i}"] = {
       //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       
