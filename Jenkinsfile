@@ -25,8 +25,8 @@ pipeline {
         steps {
             PrintStage()
             needRunParallelTest()
-            //sh './gradlew test'
-            //junit '**/build/test-results/test/*.xml'
+            sh './gradlew test'
+            junit '**/build/test-results/test/*.xml'
         }
     }
       
@@ -61,7 +61,7 @@ void PrintStage(String text=""){
 }
 
 void needRunParallelTest() {
-def splits = splitTests parallelism: count(4), generateInclusions: true, estimateTestsFromFiles: true
+def splits = splitTests parallelism: count(4), generateInclusions: true//, estimateTestsFromFiles: true
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
