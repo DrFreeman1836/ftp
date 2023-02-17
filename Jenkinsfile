@@ -67,15 +67,16 @@ for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
   def run = './gradlew test'
   for(int k = 0; k < split.size(); k++) {
-    run += ' --tests'
+    run += ' --tests '
     run += split.get(k)
   }
   println(run)
   branches["split${i}"] = {
       //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       
-      println(split)
-      println('-----------------------')
+//       println(split)
+//       println('-----------------------')
+      sh run
       
 //       if(split.includes){
 //         //
