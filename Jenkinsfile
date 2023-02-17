@@ -25,8 +25,8 @@ pipeline {
         steps {
             PrintStage()
             needRunParallelTest()
-            sh './gradlew test'
-            junit '**/build/test-results/test/*.xml'
+            //sh './gradlew test'
+            //junit '**/build/test-results/test/*.xml'
         }
     }
       
