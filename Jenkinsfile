@@ -60,6 +60,10 @@ void PrintStage(String text=""){
     text=="" ? println ('* '*10 + env.STAGE_NAME.toUpperCase() + " *"*10) : println (text)
 }
 
+String getTestName(String class) {
+    return class.subString(class.indexOf('/'), class.indexOf('.'))
+}
+
 void needRunParallelTest() {
 def splits = splitTests parallelism: count(4), generateInclusions: false//, estimateTestsFromFiles: true
 def branches = [:]
@@ -68,7 +72,7 @@ for (int i = 0; i < splits.size(); i++) {
   def run = './gradlew test'
   for(int k = 0; k < split.size(); k++) {
     run += ' --tests '
-    run += split.get(k)
+    run += getTestName(split.get(k))
   }
   println(run)
   branches["split${i}"] = {
