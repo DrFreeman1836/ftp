@@ -61,10 +61,11 @@ void PrintStage(String text=""){
 }
 
 void needRunParallelTest() {
-def splits = splitTests parallelism: count(4), generateInclusions: false
+def splits = splitTests parallelism: count(4), generateInclusions: true
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
+  
   branches["split${i}"] = {
       //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       
