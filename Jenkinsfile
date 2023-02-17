@@ -61,6 +61,8 @@ void PrintStage(String text=""){
 }
 
 String getTestName(String className) {
+    println(className.indexOf('/'))
+    println(className.indexOf('.'))
     return className.subString(className.indexOf('/'), className.indexOf('.'))
 }
 
