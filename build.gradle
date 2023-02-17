@@ -27,7 +27,26 @@ dependencies {
     compile 'args4j:args4j:2.33'
 }
 
-test {
+test () {
+    filter{
+        excludeTestsMatching 'testftp.DummyTest2'
+        excludeTestsMatching 'testftp.DummyTest'
+    }
+    useJUnitPlatform()
+        testLogging {
+        events "FAILED", "PASSED", "SKIPPED"
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces false
+    }
+}
+
+task test2 (type: Test) {
+    filter{
+        excludeTestsMatching 'testftp.DummyTest3'
+        excludeTestsMatching 'testftp.TestFtp'
+    }
     useJUnitPlatform()
     testLogging {
         events "FAILED", "PASSED", "SKIPPED"
@@ -36,7 +55,6 @@ test {
         showCauses true
         showStackTraces false
     }
-    //maxParallelForks = 2
 }
 
 task ftpJar(type: Jar) {
