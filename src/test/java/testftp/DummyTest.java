@@ -14,6 +14,6 @@ public class DummyTest {
   @Test
   public void dummyTest2() throws InterruptedException {
     Thread.sleep(2500);
-    Assertions.assertFalse(false);
+    Assertions.assertFalse(true);
   }
 }
