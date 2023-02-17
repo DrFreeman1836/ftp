@@ -61,9 +61,7 @@ void PrintStage(String text=""){
 }
 
 String getTestName(String className) {
-    println(className.indexOf('/'))
-    println(className.indexOf('.'))
-    return className.subString(className.indexOf('/'), className.indexOf('.'))
+    return className.substring(className.indexOf('/'), className.indexOf('.'))
 }
 
 void needRunParallelTest() {
