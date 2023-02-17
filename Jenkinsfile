@@ -61,7 +61,7 @@ void PrintStage(String text=""){
 }
 
 void needRunParallelTest() {
-def splits = splitTests parallelism: count(2), generateInclusions: false
+def splits = splitTests parallelism: count(2), generateInclusions: true
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
@@ -76,7 +76,7 @@ for (int i = 0; i < splits.size(); i++) {
       
 //       println(split)
 //       println('-----------------------')
-      sh run
+//       sh run
       
 //       if(split.includes){
 //         //
