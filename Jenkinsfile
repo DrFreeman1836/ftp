@@ -65,12 +65,13 @@ def splits = splitTests parallelism: count(4), generateInclusions: true//, estim
 def branches = [:]
 for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
-  def run = './gradlew test'
-  for(int k = 0; k < split.list.size(); k++) {
-    run += ' --tests '
-    run += split.list.get(k)
-  }
-  println(run)
+  println(split)  
+//   def run = './gradlew test'
+//   for(int k = 0; k < split.list.size(); k++) {
+//     run += ' --tests '
+//     run += split.list.get(k)
+//   }
+//   println(run)
   branches["split${i}"] = {
       //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
       
