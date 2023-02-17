@@ -2,11 +2,7 @@ pipeline {
     agent any
 
   stages {
-       stage('Hello') {
-          steps {
-            echo 'Hello World'
-         }
-       }
+
       stage("Checkout") {
           steps {
             PrintStage()
@@ -76,30 +72,9 @@ for (int i = 0; i < splits.size(); i++) {
   }
   println(run)
   branches["split${i}"] = {
-      //writeFile file: 'exclusions.txt', text: exclusions.join("\n")//split.list.join
-      
-//       println(split)
-//       println('-----------------------')
        sh run
-      
-//       if(split.includes){
-//         //
-//       } else {
-//         //
-//       }
-      
-      //sh "./gradlew -I ./exclusions.gradle clean check"
-      //sh "./gradlew -Dsurefire.excludesFile=exclusions.txt"
-      //step([$class: 'JUnitResultArchiver', testResults: 'build/test-results/*.xml'])//./gradlew test --tests "com.xyz.b.module.TestClass.testToRun"
+       junit '**/build/test-results/test/*.xml'
   }
 }
 parallel branches
 }
-
-//         if (split.includes) {
-//           writeFile file: "build/parallel-test-includes-${i}.txt", text: split.list.join("\n")
-//           run += " -Dsurefire.includesFile=build/parallel-test-includes-${i}.txt"
-//         } else {
-//           writeFile file: "build/parallel-test-excludes-${i}.txt", text: split.list.join("\n")
-//           run += " -Dsurefire.excludesFile=build/parallel-test-excludes-${i}.txt"
-//         }
