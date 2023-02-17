@@ -67,11 +67,11 @@ for (int i = 0; i < splits.size(); i++) {
   def split = splits.get(i);
   println(split)
   def run = './gradlew test'
-//   for(int k = 0; k < split.size(); k+=2) {
-//     run += ' --tests '
-//     run += getTestName(split.get(k))
-//   }
-//   println(run)
+  for(int k = 0; k < split.size(); k+=2) {
+    run += ' --tests '
+    run += getTestName(split.get(k))
+  }
+  println(run)
   branches["split${i}"] = {
        sh run
        junit '**/build/test-results/test/*.xml'
