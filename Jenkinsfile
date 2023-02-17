@@ -25,8 +25,8 @@ pipeline {
         steps {
             PrintStage()
             needRunParallelTest()
-            sh './gradlew test'
-            junit '**/build/test-results/test/*.xml'
+//             sh './gradlew test'
+//             junit '**/build/test-results/test/*.xml'
         }
     }
       
@@ -61,7 +61,7 @@ void PrintStage(String text=""){
 }
 
 String getTestName(String className) {
-    return className.substring(className.indexOf('/'), className.indexOf('.'))
+    return className.substring(className.indexOf('/')+1, className.indexOf('.'))
 }
 
 void needRunParallelTest() {
@@ -80,7 +80,7 @@ for (int i = 0; i < splits.size(); i++) {
       
 //       println(split)
 //       println('-----------------------')
-//       sh run
+       sh run
       
 //       if(split.includes){
 //         //
