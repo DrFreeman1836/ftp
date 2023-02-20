@@ -4,7 +4,6 @@ plugins {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-int countForks = 1
 
 group 'ftp'
 version '1.0'
@@ -28,13 +27,10 @@ dependencies {
     compile 'args4j:args4j:2.33'
 }
 
-task myTask {
-    doFirst {
-        countForks = myArg
-    }
-}
-
 test () {
+    doFirst {
+        maxParallelForks = Integer.valueOf(count)
+    }
     useJUnitPlatform()
         testLogging {
         events "FAILED", "PASSED", "SKIPPED"
@@ -43,8 +39,6 @@ test () {
         showCauses true
         showStackTraces false
     }
-    printl countForks
-    maxParallelForks = countForks
 }
 
 
