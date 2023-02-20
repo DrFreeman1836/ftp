@@ -20,11 +20,11 @@ pipeline {
     stage('Test') {
         steps {
             script {
-               PrintStage()
-             //needRunParallelTest()
+                PrintStage()
+               //needRunParallelTest()
                int countForks = 2
-               echo "./gradlew test --no-daemon -Pversion=${countForks}"
-               sh "./gradlew test --no-daemon -Pversion=${countForks}"
+               //echo "./gradlew test --no-daemon -Pversion=${countForks}"
+               sh "./gradlew test --no-daemon -PcountForks=${countForks}"
                //sh './gradlew test'
                junit '**/build/test-results/test/*.xml'
             }    
