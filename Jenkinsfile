@@ -19,10 +19,13 @@ pipeline {
       }
     stage('Test') {
         steps {
-            PrintStage()
-//             needRunParallelTest()
-            sh './gradlew test'
-              junit '**/build/test-results/test/*.xml'
+            script {
+               PrintStage()
+             //needRunParallelTest()
+               sh "./gradlew test --no-daemon -Pversion=${2}"
+               //sh './gradlew test'
+               junit '**/build/test-results/test/*.xml'
+            }    
         }
     }
       
