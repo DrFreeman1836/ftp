@@ -22,7 +22,7 @@ pipeline {
             script {
                 PrintStage()
                //needRunParallelTest()
-               int countForks = 2
+               int countForks = 4
                sh "./gradlew test -Pcount=${countForks}"
                junit '**/build/test-results/test/*.xml'
             }    
