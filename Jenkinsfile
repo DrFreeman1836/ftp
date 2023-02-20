@@ -24,7 +24,7 @@ pipeline {
                //needRunParallelTest()
                int countForks = 2
                //echo "./gradlew test --no-daemon -Pversion=${countForks}"
-               sh "./gradlew test --no-daemon -PcountForks=${countForks}"
+               sh "./gradlew test -PcountForks=${countForks}"
                //sh './gradlew test'
                junit '**/build/test-results/test/*.xml'
             }    
