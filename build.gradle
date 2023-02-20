@@ -28,6 +28,12 @@ dependencies {
     compile 'args4j:args4j:2.33'
 }
 
+task myTask {
+    doFirst {
+        countForks = myArg
+    }
+}
+
 test () {
     useJUnitPlatform()
         testLogging {
