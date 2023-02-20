@@ -43,6 +43,7 @@ test () {
         showCauses true
         showStackTraces false
     }
+    printl countForks
     maxParallelForks = countForks
 }
 
