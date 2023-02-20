@@ -23,10 +23,7 @@ pipeline {
                 PrintStage()
                //needRunParallelTest()
                int countForks = 2
-               //echo "./gradlew test --no-daemon -Pversion=${countForks}"
-               sh "./gradlew myTask -PmyArg=${countForks}"// -PcountForks=${countForks}"
-               sh "./gradlew test"
-               //sh './gradlew test'
+               sh "./gradlew test -Pcount=${countForks}"
                junit '**/build/test-results/test/*.xml'
             }    
         }
