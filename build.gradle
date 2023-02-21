@@ -28,11 +28,22 @@ dependencies {
 }
 
 test () {
+    useJUnitPlatform()
+        testLogging {
+        events "FAILED", "PASSED", "SKIPPED"
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces false
+    }
+}
+
+task parallelTest(type: Test) {
     doFirst {
         maxParallelForks = Integer.valueOf(count)
     }
-    useJUnitPlatform()
-        testLogging {
+    useJUnitPlatform() 
+    testLogging {
         events "FAILED", "PASSED", "SKIPPED"
         showExceptions true
         exceptionFormat "full"
